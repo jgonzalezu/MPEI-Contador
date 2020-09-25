@@ -149,7 +149,9 @@ int main(void) {
     
      
     
-    int tiempo = 1000000;
+    int tiempo = 50;
+    int del = 1;
+    
     while(1){
         
 
@@ -157,37 +159,27 @@ int main(void) {
         int j;
         int t;
         
-        for(i = 0; i < 10; i++){
-            
-            for(j = 0; j < 10; j++){  
+        for(i = 0; i < 10; i++){ 
+            for(j = 0; j < 10; j++){
                 
                 for(t = 0; t < tiempo; t++){
-                    
-                    
+                
                     
                     PORTBbits.RB9 = 0;
-                    num(3);
-                    __delay_ms(1)
+                    __delay_ms(del)
                     PORTBbits.RB8 = 1;
-                    num(3);
-                    __delay_ms(1)
+                    num(j);
+                    __delay_ms(del)
                     
                     PORTBbits.RB8 = 0;
-                    num(8);
-                    __delay_ms(1)
+                    __delay_ms(del)
                     PORTBbits.RB9 = 1;
-                    num(8);
-                    __delay_ms(1)
-                   
-            
+                    num(i);
+                    __delay_ms(del)
                 }
-            
             }                  
         }
- 
     }  
 }
-
-
 
 
