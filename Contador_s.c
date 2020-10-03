@@ -142,23 +142,39 @@ int main(void) {
     TRISBbits.TRISB9 = 1; // PULSADOR
       
     
-    int tiempo = 100;
+    int tiempo = 30;
     int del = 1 ;
     while(1){
         
-        int i;
-        int j;
+        int i,i1;
+        int j,j1;
         int t;
         int dir;
         
-        for(i = 0; i < 10 ; i = i){
-            for(j = 0; j < 10 ; j = j){  
+        
+        if (pulsador() == 0 ){
+                i1 = 9;
+            } else {
+                i1 = 0;
+            }
+        
+        for( i = i1 ; i < 10 & i >= 0; i = i){
+            
+            if (pulsador() == 0 ){
+                j1 = 9;
+            } else {
+                j1 = 0;
+            }
+            
+            for( j = j1 ; j < 10 & j >= 0; j = j){
+                
+              
                 for(t = 0; t < tiempo; t++){
 
+            
                     
                     PORTBbits.RB8 = 1;
                     PORTBbits.RB7 = 0;
-                    
                     num(i);
 
                     __delay_ms(del);
@@ -177,6 +193,7 @@ int main(void) {
                     j++;
                 } else {
                     j--;
+                    
                 }
             }
             
