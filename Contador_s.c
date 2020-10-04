@@ -1,117 +1,131 @@
 /*
- * File:   LedOn.c
+ * File:   Contador.c
  * Author: Juan Gonzalez
  *
- * Created on 20 de septiembre de 2020, 18:21
+ * Created on 23 de septiembre de 2020, 12:06
  */
-
 
 #include "reloj.h"
 #include "config.h"
 #include <libpic30.h> // Incluye varias librerias útiles de C
+
+int state = 0;
 
 void num(int dig){
     
     switch(dig){
         
         case 0:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=1;
-            PORTBbits.RB5=1;
-            PORTBbits.RB6=0;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=0;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=1;
             break;
             
         case 1:
-            PORTBbits.RB0=0;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=0;
-            PORTBbits.RB4=0;
-            PORTBbits.RB5=0;
-            PORTBbits.RB6=0;
-            break;
+            
+            
+            TRISBbits.TRISB0 = 1; // A
+            TRISBbits.TRISB1 = 0; // B
+            TRISBbits.TRISB2 = 0; // C
+            TRISBbits.TRISB3 = 1; // D
+            TRISBbits.TRISB13 = 1; // E
+            TRISBbits.TRISB5 = 1; // F
+            TRISBbits.TRISB7 = 1; // G
+            break;                    
             
         case 2:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=0;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=1;
-            PORTBbits.RB5=0;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=1;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=0;
+            TRISBbits.TRISB5=1;
+            TRISBbits.TRISB7=0;
             break;
             
         case 3:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=0;
-            PORTBbits.RB5=0;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=1;
+            TRISBbits.TRISB5=1;
+            TRISBbits.TRISB7=0;
             break;
             
         case 4:
-            PORTBbits.RB0=0;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=0;
-            PORTBbits.RB4=0;
-            PORTBbits.RB5=1;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=1;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=1;
+            TRISBbits.TRISB13=1;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=0;
             break;
             
         case 5:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=0;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=0;
-            PORTBbits.RB5=1;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=1;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=1;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=0;
             break;
             
         case 6:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=0;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=1;
-            PORTBbits.RB5=1;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=1;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=0;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=0;
             break;
             
         case 7:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=0;
-            PORTBbits.RB4=0;
-            PORTBbits.RB5=0;
-            PORTBbits.RB6=0;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=1;
+            TRISBbits.TRISB13=1;
+            TRISBbits.TRISB5=1;
+            TRISBbits.TRISB7=1;
             break;
             
         case 8:
-            PORTBbits.RB0=1;
-            PORTBbits.RB1=1;
-            PORTBbits.RB2=1;
-            PORTBbits.RB3=1;
-            PORTBbits.RB4=1;
-            PORTBbits.RB5=1;
-            PORTBbits.RB6=1;
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=0;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=0;
             break;
             
         case 9:
+            TRISBbits.TRISB0=0;
+            TRISBbits.TRISB1=0;
+            TRISBbits.TRISB2=0;
+            TRISBbits.TRISB3=0;
+            TRISBbits.TRISB13=1;
+            TRISBbits.TRISB5=0;
+            TRISBbits.TRISB7=0;
+            break;
+        
+        case 10:
             PORTBbits.RB0=1;
             PORTBbits.RB1=1;
             PORTBbits.RB2=1;
             PORTBbits.RB3=1;
-            PORTBbits.RB4=0;
+            PORTBbits.RB13=1;
             PORTBbits.RB5=1;
-            PORTBbits.RB6=1;
+            PORTBbits.RB7=1;
+          
             break;
     }
     
@@ -120,7 +134,18 @@ void num(int dig){
 
 int pulsador(){
     int dir;
-    dir = PORTBbits.RB9;
+    int p1,p2,p3,p4;
+    
+    p1 = PORTBbits.RB14;
+    __delay_ms(0.1)
+    p2 = PORTBbits.RB14;
+    __delay_ms(0.1)
+    p3 = PORTBbits.RB14;
+    __delay_ms(0.1)
+    p4 = PORTBbits.RB14;
+    
+    dir = p1;
+    
     return dir;
 }
 
@@ -132,21 +157,26 @@ int main(void) {
     TRISBbits.TRISB1 = 0; // B
     TRISBbits.TRISB2 = 0; // C
     TRISBbits.TRISB3 = 0; // D
-    TRISBbits.TRISB4 = 0; // E
+    TRISBbits.TRISB13 = 0; // E
     TRISBbits.TRISB5 = 0; // F
-    TRISBbits.TRISB6 = 0; // G
+    TRISBbits.TRISB7 = 0; // G
+    
+    
     
     TRISBbits.TRISB8 = 0; // 1 DIGITO
-    TRISBbits.TRISB7 = 0; // 2 DIGITO
+    TRISBbits.TRISB9 = 0; // 2 DIGITO
     
-    TRISBbits.TRISB9 = 1; // PULSADOR
-      
+    TRISBbits.TRISB14 = 1; // Pulsador
     
-    int tiempo = 30;
-    int del = 1 ;
+     
+    
+    int tiempo = 50;
+    int del = 1;
+    
     while(1){
         
-        int i,i1;
+
+       int i,i1;
         int j,j1;
         int t;
         int dir;
@@ -170,21 +200,19 @@ int main(void) {
                 
               
                 for(t = 0; t < tiempo; t++){
-
-            
+                
                     
+                    PORTBbits.RB9 = 0;
+                    __delay_ms(del)
                     PORTBbits.RB8 = 1;
-                    PORTBbits.RB7 = 0;
                     num(i);
-
-                    __delay_ms(del);
+                    __delay_ms(del)
                     
-                    PORTBbits.RB7 = 1;
                     PORTBbits.RB8 = 0;
+                    __delay_ms(del)
+                    PORTBbits.RB9 = 1;
                     num(j);
-
-                    __delay_ms(del);
-            
+                    __delay_ms(del)
                 }
                 
                 dir = pulsador();
