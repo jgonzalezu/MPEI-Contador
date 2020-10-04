@@ -9,7 +9,7 @@
 #include "config.h"
 #include <libpic30.h> // Incluye varias librerias útiles de C
 
-int state = 0;
+int state = -1;
 
 void num(int dig){
     
@@ -137,16 +137,23 @@ int pulsador(){
     int p1,p2,p3,p4;
     
     p1 = PORTBbits.RB14;
-    __delay_ms(0.1)
+    __delay_ms(0.05)
     p2 = PORTBbits.RB14;
-    __delay_ms(0.1)
+    __delay_ms(0.05)
     p3 = PORTBbits.RB14;
-    __delay_ms(0.1)
+    __delay_ms(0.05)
     p4 = PORTBbits.RB14;
     
-    dir = p1;
-    
-    return dir;
+    if (p1+p2+p3+p4 == 4){
+        state = state*-1;
+        return 0;
+    } else {
+        if (state == -1){
+            return 1;
+        } else {
+            return 0;
+        }
+    };
 }
 
 int main(void) {
